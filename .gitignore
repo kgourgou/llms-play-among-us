@@ -1,0 +1,35 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments (uv creates .venv)
+.venv/
+venv/
+env/
+
+# Packaging / build output
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Secrets: OpenRouter key lives here. Keep the example template tracked.
+.env
+.env.*
+!.env.example
+
+# Game/tournament output (replays, transcripts, summaries)
+runs/
+
+# macOS
+.DS_Store
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,52 @@
+# LLM Among Us arena: configuration.
+# Put your key in the environment (export OPENROUTER_API_KEY=...) or in a .env file next to this file.
+
+[game]
+players = 7                 # seats; names are colors, so models never see each other's identity
+impostors = 2
+max_ticks = 60              # one tick = every living player takes one action
+tasks_per_crew = 4
+kill_cooldown = 3           # ticks (also applied after every meeting)
+sabotage_cooldown = 8
+sabotage_timer = 8          # ticks before a reactor meltdown wins for the Impostors
+discussion_rounds = 2       # everyone speaks once per round, in random order
+confirm_ejects = true       # reveal the ejected player's role
+anonymous_votes = false     # true = only vote counts are shown, not who voted for whom
+timeout_winner = "impostors"
+concurrency = 8             # parallel LLM calls inside one game
+
+[openrouter]
+temperature = 0.7
+max_tokens = 800            # reasoning models need more (see per-model params below)
+timeout = 90
+max_retries = 4
+json_mode = false           # true asks OpenRouter for response_format=json_object (not every model supports it)
+
+# The roster. Model ids below are examples: run `uv run python -m arena models --filter claude`
+# (or browse https://openrouter.ai/models) and swap in whatever you want to test.
+# Per-model `params` are passed straight through to the OpenRouter request body.
+# `label` is the name used in leaderboards and replays.
+
+[[models]]
+id = "anthropic/claude-haiku-4.5"
+
+[[models]]
+id = "anthropic/claude-haiku-5.5"
+
+[[models]]
+id = "openai/gpt-6-luna"
+
+[[models]]
+id = "openai/gpt-6-sol"
+
+[[models]]
+id = "google/gemini-3.8-flash"
+
+[[models]]
+id = "anthropic/claude-sonnet-5.5"
+
+# Example of a reasoning model that needs more room to think:
+# [[models]]
+# id = "deepseek/deepseek-r1"
+# label = "deepseek-r1"
+# params = { max_tokens = 3000 }

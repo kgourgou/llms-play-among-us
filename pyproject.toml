@@ -1,0 +1,11 @@
+[project]
+name = "among-us-arena"
+version = "0.1.0"
+description = "Text-based Among Us where OpenRouter models play each other"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []  # standard library only
+
+# Not a distributable package: run it in place with `uv run python -m arena ...`.
+[tool.uv]
+package = false
